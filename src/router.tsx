@@ -10,8 +10,9 @@ export const MainRoutes = () => {
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<HomePage />} />
-          <Route path="/people" element={<PeoplePage />} />
-          <Route path=":personId" element={<PeoplePage />} />
+          <Route path="/people" element={<PeoplePage />}>
+            <Route path=":personId" element={<PeoplePage />} />
+          </Route>
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
