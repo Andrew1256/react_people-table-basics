@@ -12,7 +12,7 @@ export const PeoplePage = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch('/public/api/people.json')
+    fetch('/api/people.json')
       .then(response => {
         if (!response.ok) {
           throw new Error('Помилка завантаження JSON');
