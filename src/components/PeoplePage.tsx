@@ -52,7 +52,7 @@ export const PeoplePage = () => {
               </p>
             )}
 
-            {!loading && !error && data?.length === 0 && (
+            {!loading && !error && Array.isArray(data) && data.length === 0 && (
               <p data-cy="noPeopleMessage">There are no people on the server</p>
             )}
 
@@ -102,25 +102,33 @@ export const PeoplePage = () => {
                         <td>{person.died}</td>
 
                         <td>
-                          {mother ? (
-                            <NavLink
-                              to={`/people/${getPersonSlug(mother.name, mother.born)}`}
-                              className="has-text-danger"
-                            >
-                              {mother.name}
-                            </NavLink>
+                          {person.motherName ? (
+                            mother ? (
+                              <NavLink
+                                to={`/people/${getPersonSlug(mother.name, mother.born)}`}
+                                className="has-text-danger"
+                              >
+                                {mother.name}
+                              </NavLink>
+                            ) : (
+                              person.motherName
+                            )
                           ) : (
                             '-'
                           )}
                         </td>
 
                         <td>
-                          {father ? (
-                            <NavLink
-                              to={`/people/${getPersonSlug(father.name, father.born)}`}
-                            >
-                              {father.name}
-                            </NavLink>
+                          {person.fatherName ? (
+                            father ? (
+                              <NavLink
+                                to={`/people/${getPersonSlug(father.name, father.born)}`}
+                              >
+                                {father.name}
+                              </NavLink>
+                            ) : (
+                              person.fatherName
+                            )
                           ) : (
                             '-'
                           )}
